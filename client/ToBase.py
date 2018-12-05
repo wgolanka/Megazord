@@ -1,1 +1,0 @@
-#TODO klient wysyłający komunikaty/dane pomiarów do bazy

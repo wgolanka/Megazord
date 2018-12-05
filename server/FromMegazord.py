@@ -1,7 +1,7 @@
 import socket
 
 HOST = '127.0.0.1'
-PORT = 65432
+PORT = 65477
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
@@ -11,6 +11,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         print('Connected by', address)
         while True:
             data = connection.recv(1024)
-            # if not data:
-            #     break
-            print(repr(data))
+
+            statement = repr(data)
+
+            if 'Mission' in statement:
+                print(statement)
+                statement = 'no_statement'
