@@ -7,8 +7,9 @@ class ToBase:
     def send_statement(self, statement):
         HOST = '127.0.0.1'
         PORT = 65477
+        TO_PORT = 61341
+        sock = socket.socket(socket.AF_INET,
+                             socket.SOCK_DGRAM)
 
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect((HOST, PORT))
-            s.sendall(str.encode(statement))
-            # print('\nSend command to abort mission!\n')
+        sock.bind((HOST, PORT))
+        sock.sendto(str.encode(statement), (HOST, TO_PORT))
