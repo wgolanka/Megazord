@@ -24,5 +24,4 @@ while True:
         # TODO tutaj dodajemy wywołanie funkcji która zakończy
         # misje i wyslę komunikat o jej zakończeniu
 
-    # TODO tutaj kolejne ify dla reszty komend,
-    #  ale najpierw niech to wyżej zadziałą
+    # TODO tutaj kolejne ify dla reszty komend
