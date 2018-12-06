@@ -1,0 +1,3 @@
+class MissionConfig:
+    LENGTH_IN_SECONDS = 180
+    FREQUENCY_IN_SECONDS = 20
