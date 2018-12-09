@@ -15,13 +15,17 @@ sock.bind((HOST, PORT))
 while True:
 
     # --- TODO: make it a class and extract to method ---
-    inputFromBase = input('Press 1 to abort mission\nPress 2 to change params\n')
+    inputFromBase = input('Press 0 to start mission\nPress 1 to abort mission\nPress 2 to change params\n')
     command = 0
     try:
         command = int(inputFromBase)
     except ValueError:
         print('Invalid number!')
     # ------
+
+    if command == 0:
+        sock.sendto(str.encode(Command.START), (HOST, TO_PORT))
+        print('\nSend command to start mission!\n')
 
     if command == 1:
         sock.sendto(str.encode(Command.ABORT), (HOST, TO_PORT))
