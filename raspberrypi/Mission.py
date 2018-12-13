@@ -1,6 +1,8 @@
-#TODO tutaj można dać operacje zebrania pomiarów
-# i zapisania ich do pliku\
+from raspberrypi.MissionConfiguration import MissionConfiguration
+from raspberrypi.MissionData import MissionData
+from raspberrypi.Sensor import Sensor
 from raspberrypi.ToBase import ToBase
+import time
 
 
 class Mission:
@@ -10,3 +12,37 @@ class Mission:
         to_base = ToBase()
         if 'ABORT' in command:
             to_base.send_statement('Mission aborted')
+
+    def mission(self):
+        start_time = time.time()
+        elapsed_time = time.time() - start_time
+        mission_config = MissionConfiguration()
+        sample_num = 0
+        to_base = ToBase()
+
+        while elapsed_time < mission_config.LENGTH_IN_SECONDS:
+            sample_num = sample_num + 1
+            print(sample_num)
+            mission_data = MissionData()
+            sensors = Sensor(12, 36.3, 18.6, 14, False)  # TODO: need to be taken from arduino actual sensors
+            mission_data.sensorsData = {'Timestamp': str(mission_data.timestamp), 'Time': sensors.time,
+                                        'Temperature': sensors.temperature,
+                                        'Pressure': sensors.pressure, 'Light': sensors.light}
+            self.save_to_file(mission_data)
+            if sensors.obstacle:
+                to_base.send_statement("Mission : occurred obstacle, trying to avoid...")
+
+            if sample_num % 10 == 0:
+                print("sending data do base")
+                to_base.send_statement("Mission data...")
+
+            time.sleep(mission_config.FREQUENCY_IN_SECONDS)
+            elapsed_time = time.time() - start_time
+
+        to_base.send_statement("Mission finished")
+
+    def save_to_file(self, mission_data):
+        file_name = str(mission_data.timestamp)
+        file = open(file_name + ".txt", "w+")
+        file.write(str(mission_data.sensorsData))
+        file.close()

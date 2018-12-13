@@ -13,3 +13,5 @@ class ToBase:
 
         sock.bind((HOST, PORT))
         sock.sendto(str.encode(statement), (HOST, TO_PORT))
+
+#  def send_file(self, file):

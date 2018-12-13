@@ -13,7 +13,7 @@ sock.bind((HOST, PORT))
 
 while True:
 
-    inputFromBase = input('Press 1 to abort mission\nPress 2 to continue')
+    inputFromBase = input('Press 1 to abort mission\nPress 2 to continue\n')
     command = 0
     try:
         command = int(inputFromBase)
