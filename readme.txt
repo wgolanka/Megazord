@@ -10,6 +10,7 @@ która wyśle do bazy info, że misje została zakończona,
 albo że omija przeszkodę, albo żeby wysłać aktualne dane
 zapisane w pliku takim i takim.
 
-To taki mój pomysł na szybko jeśli chodzi o ogarnięcie samej komunikacji
-client-server.
-Daj znać co myślisz, jestem otwarta na pomysły, byle proste:D
+
+Żeby odpalić:
+
+run klasy: FromBase, startBaseToMegazord, startMission, FromMegazord

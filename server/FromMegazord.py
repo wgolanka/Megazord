@@ -14,5 +14,8 @@ while True:
     statement = repr(data)
 
     if 'Mission' in statement:
+        print('\n' + statement + '\n')
+        statement = 'no_statement'
+    elif 'data' or 'Timestamp' in statement:
         print(statement)
         statement = 'no_statement'

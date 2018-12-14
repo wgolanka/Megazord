@@ -1,4 +1,3 @@
-# TODO klient wysyłający komunikaty/dane pomiarów do bazy
 import socket
 
 
@@ -13,3 +12,6 @@ class ToBase:
 
         sock.bind((HOST, PORT))
         sock.sendto(str.encode(statement), (HOST, TO_PORT))
+        sock.close()
+
+#  def send_file(self, file):
