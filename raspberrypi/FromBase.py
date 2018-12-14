@@ -1,10 +1,9 @@
 import socket
+from Command import Command
 from raspberrypi.Mission import Mission
 
 HOST = '127.0.0.1'
 PORT = 62295
-
-mission = Mission()
 
 sock = socket.socket(socket.AF_INET,
                      socket.SOCK_DGRAM)
@@ -16,12 +15,12 @@ while True:
 
     command = data.decode()
 
-    if 'ABORT' in command:
+    if Command.ABORT in command:
         print("Preparing to abort the mission")
         Mission.operation_for(command)
         command = 'no_command'
 
-        # TODO tutaj dodajemy wywołanie funkcji która zakończy
-        # misje i wyslę komunikat o jej zakończeniu
-
-    # TODO tutaj kolejne ify dla reszty komend
+    if Command.ALL_DATA in command:
+        print("Preparing to send all collected data")
+        Mission.operation_for(command)
+        command = 'no_command'
